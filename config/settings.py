@@ -5,36 +5,49 @@ import os
 class Config:
     # Mercado Libre API settings
     MERCADO_LIBRE_API_URL = 'https://api.mercadolibre.com'
-    MERCADO_LIBRE_CLIENT_ID = os.getenv('MERCADO_LIBRE_CLIENT_ID')
-    MERCADO_LIBRE_CLIENT_SECRET = os.getenv('MERCADO_LIBRE_CLIENT_SECRET')
-    
+    MERCADO_LIBRE_SEARCH_PATH = '/sites/{site_id}/search'
+    MERCADO_LIBRE_RESULTS_LIMIT = 50
+
+    # Supported sites: MLM = Mexico, MLB = Brazil
+    MERCADO_LIBRE_SITES = {
+        'MLM': {'country': 'Mexico', 'country_code': 'MX'},
+        'MLB': {'country': 'Brazil', 'country_code': 'BR'},
+    }
+
     # Logging configuration
     LOGGING_LEVEL = 'DEBUG'
     LOGGING_FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 
     # Data output paths
     OUTPUT_PATH = './output/'
-    LOG_FILE_PATH = os.path.join(OUTPUT_PATH, 'app.log')
+    LOG_DIR = './logs/'
+    LOG_FILE_PATH = os.path.join(LOG_DIR, 'app.log')
 
     # Scheduler configuration
-    SCHEDULER_INTERVAL_MINUTES = 15  # Schedule each run every 15 minutes
+    SCHEDULER_INTERVAL_MINUTES = 15
 
     # Search keywords
-    SEARCH_KEYWORDS = ['laptop', 'smartphone', 'tablet']
+    SEARCH_KEYWORDS = ['Xiaomi', 'MIJIA', 'REALME', '美克多']
 
     # API request settings
     API_REQUEST_TIMEOUT = 10  # seconds
-
-    # Site configuration
-    SITE_COUNTRY = 'MX'
-    SITE_CURRENCY = 'MXN'
+    API_MAX_RETRIES = 3
 
     # Data field definitions
-    DATA_FIELDS = {
-        'title': 'item.title',
-        'price': 'item.price',
-        'seller_id': 'item.seller.id',
-        'condition': 'item.condition',
-        'shipping': 'item.shipping'
-    }  
+    DATA_FIELDS = [
+        'title',
+        'original_price',
+        'price',
+        'sold_quantity',
+        'rating',
+        'reviews_count',
+        'seller_name',
+        'seller_followers',
+        'product_url',
+        'main_image_url',
+        'channel_type',
+        'country',
+        'keyword',
+        'scraped_at',
+    ]
 

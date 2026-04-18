@@ -1,0 +1,3 @@
+2026-04-18 08:19:19,346 - data.data_processor - INFO - clean_data: 1 -> 1 records
+2026-04-18 08:19:19,346 - data.storage - INFO - Saved 1 records to JSON: /tmp/test_output/test.json
+2026-04-18 08:19:19,347 - data.storage - INFO - Saved 1 records to CSV: /tmp/test_output/test.csv
